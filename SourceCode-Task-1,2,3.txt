@@ -1,6 +1,6 @@
-# Task 1: Average Engagement Rate and Total Impressions
+## TASK 1: AVERAGE ENGAGEMENT RATE AND TOTAL IMPRESSIONS ##
 
--- DAX Code for calculating ValidTweet1
+# DAX Code for calculating ValidTweet1
 ValidTweet1 = IF(
     [Impressions] >= 100 &&
     [Likes] > 0 &&
@@ -10,7 +10,7 @@ ValidTweet1 = IF(
     0
 )
 
--- DAX Code for total impressions
+# DAX Code for total impressions
 Total Impressions = 
 CALCULATE(
     SUM([Impressions]),
@@ -20,7 +20,7 @@ CALCULATE(
     )
 )
 
--- DAX Code for extracting time in IST 
+# DAX Code for extracting time in IST 
 IST Hour = HOUR([Time])
 
 -- DAX Code for calculating time between 3PM and 5PM 
@@ -31,7 +31,7 @@ IF(
     0
 )
 
--- DAX Code for visual level filter 
+# DAX Code for visual level filter 
 ShowVisualFlag = 
 VAR CurrentHour = HOUR(NOW())
 RETURN IF(CurrentHour >= 15 && CurrentHour <= 17, 1, BLANK())
@@ -47,13 +47,13 @@ CALCULATE(
 )
 
 
-# Task 2: Clustered Bar Chart - Interaction Types
+## TASK 2: CLUSTERED BAR CHART - INTERACTION TYPES ##
 
--- DAX code for wordcount of tweet 
+# DAX code for wordcount of tweet 
 WordCount = 
 LEN(TRIM('SocialMedia (1)'[Tweet])) - LEN(SUBSTITUTE(TRIM('SocialMedia (1)'[Tweet]), " ", "")) + 1
 
--- DAX code to find out Tweet Category 
+# DAX code to find out Tweet Category 
 TweetCategory = 
 SWITCH(
     TRUE(),
@@ -63,10 +63,10 @@ SWITCH(
     "Other"
 )
 
--- DAX code to check the even date of tweet posted
+# DAX code to check the even date of tweet posted
 IsEvenDate = IF(MOD([Day], 2) = 0, 1, 0)
 
--- DAX code for filtering valid tweets with at least one interaction type
+# DAX code for filtering valid tweets with at least one interaction type
 ValidTweet2 = 
 VAR HasClicks = 
     'SocialMedia (1)'[media views] > 0 || 
@@ -82,15 +82,15 @@ IF(
     0
 )
 
-# Task 3: Line Chart - Average Engagement Rate by Month
+## TASK 3: LINE CHART - AVERAGE ENGAGEMENT RATE BY MONTH ##
 
--- DAX code for calculating character count of tweet
+# DAX code for calculating character count of tweet
 charcount = LEN('SocialMedia (1)'[Tweet])
 
--- DAX code for extracting Media Type
+# DAX code for extracting Media Type
 MediaType = IF('SocialMedia (1)'[media views] > 0, "With Media", "Without Media")
 
--- DAX code for calculating engagement rate for Task 3
+# DAX code for calculating engagement rate for Task 3
 ValidTweet3 = 
 VAR EngagementEven = MOD('SocialMedia (1)'[engagement rate], 2) = 0
 VAR DateOdd = MOD(DAY('SocialMedia (1)'[Day]), 2) = 1
@@ -104,7 +104,7 @@ RETURN IF(
     0
 )
 
--- DAX code for visual level filter between 3PM-5PM and 7AM-11AM
+# DAX code for visual level filter between 3PM-5PM and 7AM-11AM
 ShowVisualFlag3 = 
 VAR CurrentHour = HOUR(NOW())
 RETURN
